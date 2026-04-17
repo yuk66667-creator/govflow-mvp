@@ -1,0 +1,35 @@
+[
+  {
+    "email": "shot.note.2026@gmail.com",
+    "keywords": [
+      "창업"
+    ],
+    "industry": "IT",
+    "companyType": "소상공인",
+    "revenue": "",
+    "age": null,
+    "registeredAt": "2026-04-16T06:08:17.212Z"
+  },
+  {
+    "email": "test@test.com",
+    "keywords": [
+      "마케팅"
+    ],
+    "industry": "교육",
+    "companyType": "",
+    "revenue": "",
+    "age": null,
+    "registeredAt": "2026-04-16T06:49:42.930Z"
+  },
+  {
+    "email": "yuk66667@gmail.com",
+    "keywords": [
+      "마케팅"
+    ],
+    "industry": "서비스",
+    "companyType": "소상공인",
+    "revenue": "",
+    "age": 1,
+    "registeredAt": "2026-04-16T06:56:41.786Z"
+  }
+]

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GovFlow — 정부지원 자동 추천</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- ── 사이드바 ── -->
+  <aside class="sidebar">
+    <div class="logo">
+      <span class="logo-icon">G</span>
+      <span class="logo-text">GovFlow</span>
+    </div>
+    <nav>
+      <a class="nav-item active" data-page="dashboard">&#9632; 대시보드</a>
+      <a class="nav-item" data-page="programs">&#9776; 공고 목록</a>
+      <a class="nav-item" data-page="admin">&#9881; 공고 관리</a>
+      <a class="nav-item" data-page="users">&#9786; 사용자 관리</a>
+      <a class="nav-item" data-page="match">&#9733; 매칭 결과</a>
+      <a class="nav-item" data-page="documents">&#9998; 사업계획서</a>
+      <a class="nav-item" data-page="email">&#9993; 발송 관리</a>
+      <a class="nav-item" data-page="history">&#9776; 발송 이력</a>
+    </nav>
+    <div class="sidebar-footer">매일 오전 9시 자동 발송</div>
+  </aside>
+
+  <!-- ── 메인 콘텐츠 ── -->
+  <main class="main">
+    <div id="toast" class="toast hidden"></div>
+
+    <!-- ─── 대시보드 ─── -->
+    <section id="page-dashboard" class="page active">
+      <div class="page-header">
+        <h1>대시보드</h1>
+        <p class="page-desc">GovFlow 현황을 한눈에 확인하세요.</p>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-label">등록 공고</div><div class="stat-value" id="stat-programs">—</div></div>
+        <div class="stat-card"><div class="stat-label">등록 사용자</div><div class="stat-value" id="stat-users">—</div></div>
+        <div class="stat-card"><div class="stat-label">마감 임박 (30일)</div><div class="stat-value" id="stat-urgent">—</div></div>
+        <div class="stat-card"><div class="stat-label">총 발송 건수</div><div class="stat-value" id="stat-history">—</div></div>
+      </div>
+      <div class="card" style="margin-top:24px">
+        <div class="card-title">마감 임박 공고 (30일 이내)</div>
+        <div id="dashboard-urgent-list"><div class="empty">로딩 중...</div></div>
+      </div>
+    </section>
+
+    <!-- ─── 공고 목록 ─── -->
+    <section id="page-programs" class="page">
+      <div class="page-header">
+        <h1>공고 목록</h1>
+        <p class="page-desc">등록된 정부지원 공고를 검색하고 확인하세요.</p>
+      </div>
+      <div class="toolbar">
+        <input id="program-search" type="text" placeholder="공고명, 키워드, 기관 검색..." class="input-text">
+        <button id="btn-program-search" class="btn btn-primary">검색</button>
+        <button id="btn-program-reset" class="btn btn-ghost">전체 보기</button>
+      </div>
+      <div id="programs-list" class="program-grid"><div class="empty">로딩 중...</div></div>
+    </section>
+
+    <!-- ─── 공고 관리 (Admin) ─── -->
+    <section id="page-admin" class="page">
+      <div class="page-header">
+        <h1>공고 관리</h1>
+        <p class="page-desc">공고를 추가·수정·삭제하고 CSV로 일괄 가져올 수 있습니다.</p>
+      </div>
+      <div class="toolbar">
+        <button id="btn-add-program" class="btn btn-primary">+ 공고 추가</button>
+        <button id="btn-show-import" class="btn btn-ghost">CSV 가져오기</button>
+        <button id="btn-dl-template" class="btn btn-ghost">템플릿 다운로드</button>
+      </div>
+
+      <!-- CSV 가져오기 패널 -->
+      <div id="import-panel" class="card hidden" style="margin-bottom:20px">
+        <div class="card-title">CSV 가져오기</div>
+        <p class="card-desc" style="margin-bottom:12px">
+          헤더 순서: <code>title, amount, deadline, keywords, ministry, category, eligibility, description, industries, companyTypes, minAge, maxAge, link, region</code><br>
+          <small>keywords / industries / companyTypes 는 세미콜론(;)으로 구분</small>
+        </p>
+        <textarea id="csv-input" class="input-textarea" rows="8" placeholder="CSV 내용을 붙여넣으세요..."></textarea>
+        <div style="margin-top:10px;display:flex;gap:10px">
+          <button id="btn-import-csv" class="btn btn-primary">가져오기</button>
+          <button id="btn-cancel-import" class="btn btn-ghost">취소</button>
+        </div>
+        <div id="import-result" style="margin-top:10px;font-size:13px"></div>
+      </div>
+
+      <div id="admin-programs-list"><div class="empty">로딩 중...</div></div>
+    </section>
+
+    <!-- ─── 사용자 관리 ─── -->
+    <section id="page-users" class="page">
+      <div class="page-header">
+        <h1>사용자 관리</h1>
+        <p class="page-desc">이메일, 키워드, 기업 정보로 사용자를 등록·관리합니다.</p>
+      </div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">사용자 등록 / 수정</div>
+          <div class="form-group">
+            <label>이메일 *</label>
+            <input id="reg-email" type="email" placeholder="user@example.com" class="input-text">
+          </div>
+          <div class="form-group">
+            <label>키워드 (최대 5개, 쉼표 구분) *</label>
+            <input id="reg-keywords" type="text" placeholder="창업, AI, 마케팅" class="input-text">
+          </div>
+          <div class="form-group">
+            <label>업종</label>
+            <select id="reg-industry" class="input-select">
+              <option value="">선택 안 함</option>
+              <option>IT</option><option>AI</option><option>제조</option>
+              <option>서비스</option><option>유통</option><option>건설</option>
+              <option>농업</option><option>의료</option><option>교육</option><option>기타</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>기업형태</label>
+            <select id="reg-companyType" class="input-select">
+              <option value="">선택 안 함</option>
+              <option>소상공인</option><option>소기업</option>
+              <option>중기업</option><option>중견기업</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>업력 (년)</label>
+            <input id="reg-age" type="number" placeholder="3" class="input-text" min="0">
+          </div>
+          <button id="btn-register" class="btn btn-primary full-width">등록 / 업데이트</button>
+        </div>
+        <div class="card">
+          <div class="card-title">수신 거부</div>
+          <div class="form-group">
+            <label>이메일</label>
+            <input id="unreg-email" type="email" placeholder="user@example.com" class="input-text">
+          </div>
+          <button id="btn-unregister" class="btn btn-danger full-width">수신 거부 처리</button>
+        </div>
+      </div>
+      <div class="card" style="margin-top:20px">
+        <div class="card-title">등록 사용자 목록</div>
+        <div id="users-list"><div class="empty">로딩 중...</div></div>
+      </div>
+    </section>
+
+    <!-- ─── 매칭 결과 ─── -->
+    <section id="page-match" class="page">
+      <div class="page-header">
+        <h1>매칭 결과</h1>
+        <p class="page-desc">사용자 이메일로 매칭 공고를 미리 확인합니다.</p>
+      </div>
+      <div class="card">
+        <div class="row-group">
+          <input id="match-email" type="email" placeholder="등록된 이메일 입력" class="input-text">
+          <button id="btn-match" class="btn btn-primary">매칭 조회</button>
+        </div>
+      </div>
+      <div id="match-result" class="match-result hidden"></div>
+    </section>
+
+    <!-- ─── 사업계획서 ─── -->
+    <section id="page-documents" class="page">
+      <div class="page-header">
+        <h1>사업계획서 자동 생성</h1>
+        <p class="page-desc">기업 정보를 입력하면 사업계획서를 자동으로 생성합니다.</p>
+      </div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">기업 기본 정보</div>
+          <div class="form-group"><label>기업명 *</label><input id="doc-company-name" type="text" placeholder="(주)홍길동상사" class="input-text"></div>
+          <div class="form-group"><label>업종</label><input id="doc-industry" type="text" placeholder="IT·소프트웨어" class="input-text"></div>
+          <div class="form-group">
+            <label>기업 규모</label>
+            <select id="doc-size" class="input-select">
+              <option value="">선택</option>
+              <option>소상공인</option><option>소기업</option><option>중기업</option><option>중견기업</option>
+            </select>
+          </div>
+          <div class="form-group"><label>연 매출</label><input id="doc-revenue" type="text" placeholder="5억원" class="input-text"></div>
+          <div class="form-group"><label>업력 (년)</label><input id="doc-age" type="number" placeholder="3" class="input-text" min="0"></div>
+          <div class="form-group"><label>대표자</label><input id="doc-ceo" type="text" placeholder="홍길동" class="input-text"></div>
+        </div>
+        <div class="card">
+          <div class="card-title">사업 내용</div>
+          <div class="form-group">
+            <label>대상 공고 선택 *</label>
+            <select id="doc-program" class="input-select"><option value="">공고를 선택하세요</option></select>
+          </div>
+          <div class="form-group"><label>지원 필요성</label><textarea id="doc-need" class="input-textarea" placeholder="지원이 필요한 이유를 입력하세요."></textarea></div>
+          <div class="form-group"><label>사업 추진 계획</label><textarea id="doc-plan" class="input-textarea" placeholder="세부 추진 계획을 입력하세요."></textarea></div>
+          <div class="form-group"><label>기대 성과</label><textarea id="doc-expected" class="input-textarea" placeholder="기대되는 성과를 입력하세요."></textarea></div>
+          <div class="form-group"><label>예산 계획</label><textarea id="doc-budget" class="input-textarea" placeholder="세부 예산 계획을 입력하세요."></textarea></div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:20px">
+        <button id="btn-doc-preview" class="btn btn-primary">미리보기 / PDF 저장</button>
+      </div>
+    </section>
+
+    <!-- ─── 발송 관리 ─── -->
+    <section id="page-email" class="page">
+      <div class="page-header">
+        <h1>발송 관리</h1>
+        <p class="page-desc">수동으로 이메일을 발송합니다.</p>
+      </div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">개별 즉시 발송</div>
+          <p class="card-desc">특정 사용자에게 매칭된 공고를 즉시 발송합니다.</p>
+          <div class="form-group" style="margin-top:16px">
+            <label>이메일</label>
+            <input id="send-email" type="email" placeholder="user@example.com" class="input-text">
+          </div>
+          <button id="btn-send-now" class="btn btn-primary full-width">즉시 발송</button>
+        </div>
+        <div class="card">
+          <div class="card-title">전체 일괄 발송</div>
+          <p class="card-desc">등록된 모든 사용자에게 오늘의 추천 공고를 발송합니다.<br>
+          <small style="color:#e74c3c">실제 이메일이 발송됩니다. 신중하게 사용하세요.</small></p>
+          <button id="btn-run-job" class="btn btn-warning full-width" style="margin-top:32px">전체 발송 실행</button>
+        </div>
+      </div>
+      <div class="card" style="margin-top:20px">
+        <div class="card-title">발송 결과</div>
+        <div id="send-result"><div class="empty">발송 후 결과가 여기에 표시됩니다.</div></div>
+      </div>
+    </section>
+
+    <!-- ─── 발송 이력 ─── -->
+    <section id="page-history" class="page">
+      <div class="page-header">
+        <h1>발송 이력</h1>
+        <p class="page-desc">최근 100건의 발송 이력을 확인합니다.</p>
+      </div>
+      <div class="card">
+        <div id="history-list"><div class="empty">로딩 중...</div></div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ─── 공고 추가/수정 모달 ─── -->
+<div id="modal-overlay" class="modal-overlay hidden">
+  <div class="modal">
+    <div class="modal-header">
+      <span id="modal-title">공고 추가</span>
+      <button class="modal-close" id="btn-modal-close">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="modal-program-id">
+      <div class="two-col">
+        <div>
+          <div class="form-group"><label>공고명 *</label><input id="m-title" type="text" class="input-text" placeholder="소상공인 창업 지원사업"></div>
+          <div class="form-group"><label>지원 금액</label><input id="m-amount" type="text" class="input-text" placeholder="최대 5,000만원"></div>
+          <div class="form-group"><label>마감일</label><input id="m-deadline" type="date" class="input-text"></div>
+          <div class="form-group"><label>담당 기관</label><input id="m-ministry" type="text" class="input-text" placeholder="중소벤처기업부"></div>
+          <div class="form-group"><label>카테고리</label><input id="m-category" type="text" class="input-text" placeholder="창업"></div>
+          <div class="form-group"><label>지역</label><input id="m-region" type="text" class="input-text" placeholder="전국"></div>
+          <div class="form-group"><label>공고 링크</label><input id="m-link" type="url" class="input-text" placeholder="https://..."></div>
+        </div>
+        <div>
+          <div class="form-group"><label>키워드 (쉼표 구분)</label><input id="m-keywords" type="text" class="input-text" placeholder="창업, 소상공인"></div>
+          <div class="form-group"><label>대상 업종 (쉼표 구분, 전체 가능)</label><input id="m-industries" type="text" class="input-text" placeholder="전체"></div>
+          <div class="form-group"><label>대상 기업형태 (쉼표 구분)</label><input id="m-companyTypes" type="text" class="input-text" placeholder="전체"></div>
+          <div class="form-group"><label>최소 업력 (년)</label><input id="m-minAge" type="number" class="input-text" placeholder="없음" min="0"></div>
+          <div class="form-group"><label>최대 업력 (년)</label><input id="m-maxAge" type="number" class="input-text" placeholder="없음" min="0"></div>
+          <div class="form-group"><label>지원 자격</label><input id="m-eligibility" type="text" class="input-text" placeholder="소상공인 및 예비창업자"></div>
+          <div class="form-group"><label>설명</label><textarea id="m-description" class="input-textarea" rows="3" placeholder="사업 설명을 입력하세요."></textarea></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button id="btn-modal-save" class="btn btn-primary">저장</button>
+      <button id="btn-modal-cancel" class="btn btn-ghost">취소</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>

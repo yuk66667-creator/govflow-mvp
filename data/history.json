@@ -1,0 +1,320 @@
+[
+  {
+    "id": "mo12gsha2j0",
+    "email": "yuk66667@gmail.com",
+    "sentAt": "2026-04-16T05:56:34.990Z",
+    "matchCount": 5,
+    "matched": [
+      {
+        "title": "청년창업사관학교",
+        "score": 3
+      },
+      {
+        "title": "소상공인 창업 지원사업",
+        "score": 1
+      },
+      {
+        "title": "AI 혁신기업 육성사업",
+        "score": 1
+      },
+      {
+        "title": "여성기업 창업 패키지",
+        "score": 1
+      },
+      {
+        "title": "소셜벤처 육성 지원사업",
+        "score": 1
+      }
+    ],
+    "success": false,
+    "error": "Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-82f6707b6b8sm4748121b3a.22 - gsmtp"
+  },
+  {
+    "id": "mo12gtah6hc",
+    "email": "yuk66667@gmail.com",
+    "sentAt": "2026-04-16T05:56:36.041Z",
+    "matchCount": 5,
+    "matched": [
+      {
+        "title": "청년창업사관학교",
+        "score": 3
+      },
+      {
+        "title": "소상공인 창업 지원사업",
+        "score": 1
+      },
+      {
+        "title": "AI 혁신기업 육성사업",
+        "score": 1
+      },
+      {
+        "title": "여성기업 창업 패키지",
+        "score": 1
+      },
+      {
+        "title": "소셜벤처 육성 지원사업",
+        "score": 1
+      }
+    ],
+    "success": false,
+    "error": "Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-2b4782b193dsm53178125ad.69 - gsmtp"
+  },
+  {
+    "id": "mo12gtiw31o",
+    "email": "yuk66667@gmail.com",
+    "sentAt": "2026-04-16T05:56:36.344Z",
+    "matchCount": 5,
+    "matched": [
+      {
+        "title": "청년창업사관학교",
+        "score": 3
+      },
+      {
+        "title": "소상공인 창업 지원사업",
+        "score": 1
+      },
+      {
+        "title": "AI 혁신기업 육성사업",
+        "score": 1
+      },
+      {
+        "title": "여성기업 창업 패키지",
+        "score": 1
+      },
+      {
+        "title": "소셜벤처 육성 지원사업",
+        "score": 1
+      }
+    ],
+    "success": false,
+    "error": "Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-82f67292f77sm4599387b3a.26 - gsmtp"
+  },
+  {
+    "id": "mo12gtj2hdp",
+    "email": "yuk66667@gmail.com",
+    "sentAt": "2026-04-16T05:56:36.350Z",
+    "matchCount": 5,
+    "matched": [
+      {
+        "title": "청년창업사관학교",
+        "score": 3
+      },
+      {
+        "title": "소상공인 창업 지원사업",
+        "score": 1
+      },
+      {
+        "title": "AI 혁신기업 육성사업",
+        "score": 1
+      },
+      {
+        "title": "여성기업 창업 패키지",
+        "score": 1
+      },
+      {
+        "title": "소셜벤처 육성 지원사업",
+        "score": 1
+      }
+    ],
+    "success": false,
+    "error": "Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 41be03b00d2f7-c79581cb03csm3643897a12.27 - gsmtp"
+  },
+  {
+    "id": "mo12he11g0p",
+    "email": "yuk66667@gmail.com",
+    "sentAt": "2026-04-16T05:57:02.917Z",
+    "matchCount": 5,
+    "matched": [
+      {
+        "title": "청년창업사관학교",
+        "score": 3
+      },
+      {
+        "title": "소상공인 창업 지원사업",
+        "score": 1
+      },
+      {
+        "title": "AI 혁신기업 육성사업",
+        "score": 1
+      },
+      {
+        "title": "여성기업 창업 패키지",
+        "score": 1
+      },
+      {
+        "title": "소셜벤처 육성 지원사업",
+        "score": 1
+      }
+    ],
+    "success": false,
+    "error": "Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-82f67434bd8sm4073814b3a.49 - gsmtp"
+  },
+  {
+    "id": "mo12ru15xn0",
+    "email": "yuk66667@gmail.com",
+    "sentAt": "2026-04-16T06:05:10.217Z",
+    "matchCount": 5,
+    "matched": [
+      {
+        "title": "소상공인 창업 지원사업",
+        "score": 5
+      },
+      {
+        "title": "청년창업사관학교",
+        "score": 5
+      },
+      {
+        "title": "여성기업 창업 패키지",
+        "score": 5
+      },
+      {
+        "title": "창업기업 투자연계 보증",
+        "score": 5
+      },
+      {
+        "title": "수출바우처 지원사업",
+        "score": 3
+      }
+    ],
+    "success": true,
+    "error": null
+  },
+  {
+    "id": "mo12w1tlxpd",
+    "email": "shot.note.2026@gmail.com",
+    "sentAt": "2026-04-16T06:08:26.937Z",
+    "matchCount": 5,
+    "matched": [
+      {
+        "title": "소상공인 창업 지원사업",
+        "score": 7
+      },
+      {
+        "title": "청년창업사관학교",
+        "score": 7
+      },
+      {
+        "title": "여성기업 창업 패키지",
+        "score": 7
+      },
+      {
+        "title": "소상공인 온라인 판로 개척",
+        "score": 5
+      },
+      {
+        "title": "창업기업 투자연계 보증",
+        "score": 5
+      }
+    ],
+    "success": true,
+    "error": null
+  },
+  {
+    "id": "mo14i90rgjd",
+    "email": "yuk66667@gmail.com",
+    "sentAt": "2026-04-16T06:53:42.315Z",
+    "matchCount": 5,
+    "matched": [
+      {
+        "title": "소상공인 창업 지원사업",
+        "score": 6
+      },
+      {
+        "title": "청년창업사관학교",
+        "score": 6
+      },
+      {
+        "title": "여성기업 창업 패키지",
+        "score": 6
+      },
+      {
+        "title": "창업기업 투자연계 보증",
+        "score": 6
+      },
+      {
+        "title": "수출바우처 지원사업",
+        "score": 2
+      }
+    ],
+    "success": true,
+    "error": null
+  },
+  {
+    "id": "mo14m9cwcj3",
+    "email": "yuk66667@gmail.com",
+    "sentAt": "2026-04-16T06:56:49.376Z",
+    "matchCount": 5,
+    "matched": [
+      {
+        "title": "소상공인 온라인 판로 개척",
+        "score": 8
+      },
+      {
+        "title": "수출바우처 지원사업",
+        "score": 6
+      },
+      {
+        "title": "글로벌 마케팅 바우처",
+        "score": 6
+      },
+      {
+        "title": "소상공인 창업 지원사업",
+        "score": 4
+      },
+      {
+        "title": "청년창업사관학교",
+        "score": 4
+      }
+    ],
+    "success": true,
+    "error": null
+  },
+  {
+    "id": "mo2tbewgvw1",
+    "email": "yuk66667@gmail.com",
+    "sentAt": "2026-04-17T11:15:59.920Z",
+    "matchCount": 5,
+    "matched": [
+      {
+        "title": "소상공인 온라인 판로 개척",
+        "score": 8
+      },
+      {
+        "title": "수출바우처 지원사업",
+        "score": 6
+      },
+      {
+        "title": "글로벌 마케팅 바우처",
+        "score": 6
+      },
+      {
+        "title": "소상공인 창업 지원사업",
+        "score": 4
+      },
+      {
+        "title": "청년창업사관학교",
+        "score": 4
+      }
+    ],
+    "success": true,
+    "error": null
+  },
+  {
+    "id": "mo2u0vw5bsl",
+    "email": "yuk66667@gmail.com",
+    "sentAt": "2026-04-17T11:35:48.341Z",
+    "matchCount": 0,
+    "matched": [],
+    "success": true,
+    "error": null
+  },
+  {
+    "id": "mo2uwk0o1oj",
+    "email": "yuk66667@gmail.com",
+    "sentAt": "2026-04-17T12:00:25.944Z",
+    "matchCount": 0,
+    "matched": [],
+    "success": true,
+    "error": null
+  }
+]
